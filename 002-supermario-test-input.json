@@ -76,7 +76,7 @@
     "expectedOutput": "WIN"
   },
   {
-    "input": "goomba piranha 10 80 130 goomba"
+    "input": "goomba piranha 10 80 130 goomba",
     "expectedOutput": "???"
-  },
+  }
 ]
