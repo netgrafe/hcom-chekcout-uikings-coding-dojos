@@ -1,0 +1,82 @@
+[
+  {
+    "input": "1Up  koopa  goomba piranha  Bowser",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "10 40 koopa goomba 20 30 piranha piranha",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": "Star Mushroom piranha goomba piranha goomba Princess",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "Star Mushroom piranha goomba piranha goomba koopa Princess",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": "Star 99 Star Mushroom piranha piranha 1Up goomba piranha piranha goomba",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": "Star Mushroom piranha Star Mushroom goomba Mushroom Star piranha goomba piranha goomba goomba goomba Bowser",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": "Star Mushroom piranha Star Mushroom goomba Mushroom Star piranha goomba piranha goomba    ",
+    "expectedOutput": "???"
+  },
+  {
+    "input": "Star 99 1Up piranha piranha goomba piranha Princess",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": " piranha piranha piranha piranha",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": "piranha Princess piranha",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "Mushroom piranha piranha piranha Princess",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "piranha piranha Star goomba goomba Princess",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "goomba piranha Star goomba goomba piranha Princess",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": "goomba piranha 1Up goomba 1Up goomba Bowser",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "goomba piranha 10 80 130 goomba piranha Bowser",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "Mushroom Mushroom goomba goomba goomba Bowser",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "Star Mushroom Mushroom goomba piranha piranha goomba",
+    "expectedOutput": "GAME OVER"
+  },
+  {
+    "input": "Star Mushroom Mushroom invalid piranha piranha goomba",
+    "expectedOutput": "???"
+  },
+  {
+    "input": "goomba piranha 10 80 130 goomba piranha 91 piranha Bowser",
+    "expectedOutput": "WIN"
+  },
+  {
+    "input": "goomba piranha 10 80 130 goomba"
+    "expectedOutput": "???"
+  },
+]
