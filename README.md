@@ -4,6 +4,8 @@ Coding Dojo repository for HCOM Checkout UIEs.
 
 ## Task descriptions
 
-001 - Bank OCR
+[001 - Bank OCR](dojos/001-bank-ocr/task/task-description.html)
 
-[002 - SuperMario](002-supermario.md)
+[002 - SuperMario](dojos/002-supermario/task/002-supermario.md)
+
+[003 - Responsive sitebuild](dojos/003-responsive-sitebuild-1/task/README.md)

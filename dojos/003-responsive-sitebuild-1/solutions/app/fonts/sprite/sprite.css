@@ -1,0 +1,46 @@
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url(sprite.svg);
+}
+.icon-about {
+  width: 20px;
+  height: 28px;
+  background-position: 0 0;
+}
+.icon-portfolio {
+  width: 28px;
+  height: 28px;
+  background-position: -44px 0;
+}
+.icon-intro {
+  width: 26px;
+  height: 28px;
+  background-position: -88px 0;
+}
+.icon-twitter {
+  width: 26px;
+  height: 28px;
+  background-position: -132px 0;
+}
+.icon-facebook {
+  width: 16px;
+  height: 28px;
+  background-position: -176px 0;
+}
+.icon-github {
+  width: 24px;
+  height: 28px;
+  background-position: -220px 0;
+}
+.icon-contact {
+  width: 28px;
+  height: 28px;
+  background-position: -264px 0;
+}
+.icon-dribbble {
+  width: 24px;
+  height: 28px;
+  background-position: -308px 0;
+}
+

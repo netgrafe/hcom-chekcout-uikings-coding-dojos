@@ -1,0 +1,31 @@
+Sitebuild coding dojo:
+-----------------------
+
+sidebar bg:             #222629;
+menu text:              rgba(255, 255, 255, 0.5);
+menu icon:              #41484c;
+active icon:            #e27689;
+
+content text:           #888;
+section title, caption: #666;
+section 1 bg:           #81918E;
+section 2 bg:           #f5fafa;
+section 3 bg:           #e7eaea;
+section 4 bg:           #dbe3e2;
+footer bg:              #d0d9d8;
+
+input bg:               rgba(255, 255, 255, 0.75);
+input focus:            #8ebebc;
+button bg:              #8ebebc;
+button hover bg:        #9ececc;
+
+title width:            10em;
+
+breakpoints:
+						1880px
+						1620px
+						1320px
+						960px
+						736px
+
+content max width 		100%/960/1200/1400
