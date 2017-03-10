@@ -1,46 +1,46 @@
-.icon {
+[class^="icon-"], [class*=" icon-"] {
   display: inline-block;
   background-repeat: no-repeat;
   background-image: url(sprite.svg);
 }
 .icon-about {
-  width: 20px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   background-position: 0 0;
 }
 .icon-portfolio {
-  width: 28px;
-  height: 28px;
-  background-position: -44px 0;
+  width: 32px;
+  height: 32px;
+  background-position: 0 -32px;
 }
 .icon-intro {
-  width: 26px;
-  height: 28px;
-  background-position: -88px 0;
+  width: 32px;
+  height: 32px;
+  background-position: 0 -64px;
 }
 .icon-twitter {
-  width: 26px;
-  height: 28px;
-  background-position: -132px 0;
+  width: 32px;
+  height: 32px;
+  background-position: 0 -96px;
 }
 .icon-facebook {
-  width: 16px;
-  height: 28px;
-  background-position: -176px 0;
+  width: 31px;
+  height: 32px;
+  background-position: 0 -128px;
 }
 .icon-github {
-  width: 24px;
-  height: 28px;
-  background-position: -220px 0;
+  width: 32px;
+  height: 32px;
+  background-position: 0 -160px;
 }
 .icon-contact {
-  width: 28px;
-  height: 28px;
-  background-position: -264px 0;
+  width: 32px;
+  height: 32px;
+  background-position: 0 -192px;
 }
 .icon-dribbble {
-  width: 24px;
-  height: 28px;
-  background-position: -308px 0;
+  width: 32px;
+  height: 32px;
+  background-position: 0 -224px;
 }
 

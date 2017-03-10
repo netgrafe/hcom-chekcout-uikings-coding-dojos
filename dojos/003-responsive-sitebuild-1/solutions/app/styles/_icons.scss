@@ -1,0 +1,19 @@
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    content: '';
+    display: inline-block;
+    mask: url(../images/sprite.svg) no-repeat 0 0 / 100% auto;
+    background-color: currentColor;
+    width: 1em;
+    height: 1em;
+}
+
+$icons: about portfolio intro twitter facebook github contact dribble;
+
+@each $icon in $icons {
+    $i: index($icons, $icon) - 1;
+
+    .icon-#{$icon}:before {
+        mask-position: 0 $i * -1em;
+    }
+}

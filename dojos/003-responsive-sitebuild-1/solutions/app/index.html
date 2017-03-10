@@ -7,6 +7,7 @@
     <title>CodingDojo</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- build:css styles/vendor.css -->
@@ -23,35 +24,35 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 <nav>
-    <a href="#">
-        <img src="images/avatar.jpg">
+    <a id="profile" href="#">
+        <img src="images/avatar.jpg" alt="">
         <strong>Jane Doe</strong><br>
         Hyperspace Engineer
     </a>
-    <ol>
-        <li><a href="#intro">Intro</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#about">About me</a></li>
-        <li><a href="#contact">Contact</a></li>
+    <ol id="main-menu">
+        <li><a href="#intro" class="icon-intro active">Intro</a></li>
+        <li><a href="#portfolio" class="icon-portfolio">Portfolio</a></li>
+        <li><a href="#about" class="icon-about">About me</a></li>
+        <li><a href="#contact" class="icon-contact">Contact</a></li>
     </ol>
-    <ul>
-        <li><a href="#">Twitter</a></li>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Github</a></li>
-        <li><a href="#">Dribbble</a></li>
-        <li><a href="#">Contact</a></li>
+    <ul id="share">
+        <li><a href="#" class="icon-twitter">Twitter</a></li>
+        <li><a href="#" class="icon-facebook">Facebook</a></li>
+        <li><a href="#" class="icon-github">Github</a></li>
+        <li><a href="#" class="icon-dribbble">Dribbble</a></li>
+        <li><a href="#" class="icon-contact">Contact</a></li>
     </ul>
 </nav>
 <main>
-    <section id="intro">
-        <h1>Intro</h1>
-        <p>
+    <section id="intro" class="invert">
+        <h1 class="offscreen">Intro</h1>
+        <p class="highlight">
             Hi! I’m <strong>Prologue</strong>, a <a href="#"><strong>free</strong></a> responsive site template designed by <a href="#"><strong>HTML5 UP</strong></a>.
         </p>
         <p>
             Ligula scelerisque justo sem accumsan diam quis vitae natoque dictum sollicitudin elementum.
         </p>
-        <a href="#">Magna Aliquam</a>
+        <a href="#" class="button">Magna Aliquam</a>
     </section>
     <section id="portfolio">
         <h1>Portfolio</h1>
@@ -83,12 +84,35 @@
             </figure>
         </div>
     </section>
+    <section id="about">
+        <h1>About me</h1>
+        <figure>
+            <img src="images/pic08.jpg" alt="">
+        </figure>
+        <p>
+            Tincidunt eu elit diam magnis pretium accumsan etiam id urna. Ridiculus ultricies curae quis et rhoncus
+            velit. Lobortis elementum aliquet nec vitae laoreet eget cubilia quam non etiam odio tincidunt montes.
+            Elementum sem parturient nulla quam placerat viverra mauris non cum elit tempus ullamcorper dolor. Libero
+            rutrum ut lacinia donec curae mus vel quisque sociis nec ornare iaculis.
+        </p>
+    </section>
+    <section id="contact">
+        <h1>Contact</h1>
+        <p>Elementum sem parturient nulla quam placerat viverra mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
+        <form>
+            <label for="name">Name</label>
+            <input class="field" type="text" placeholder="Name" id="name"><br>
+            <label for="email">Email</label>
+            <input class="field" type="email" placeholder="Email" id="email"><br>
+            <label for="message">Message</label>
+            <textarea class="field" id="message" placeholder="Message"></textarea><br>
+            <button class="button" type="submit">Send message</button>
+        </form>
+    </section>
     <footer>
         &copy; Untitled. All rights reserved. | Design: <a href="#">Anonymous</a>
     </footer>
 </main>
-
-
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <!-- endbower -->
