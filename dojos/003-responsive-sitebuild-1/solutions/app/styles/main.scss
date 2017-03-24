@@ -1,6 +1,7 @@
 // bower:scss
 // endbower
 
+@import "variables";
 @import "icons";
 
 .browserupgrade {
@@ -10,18 +11,79 @@
     padding: 0.2em 0;
 }
 
-html, body {
-    height: 100%;
+ul, ol, li, p, h1, h2, h3, figure {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
 }
 
 * {
     font-family: inherit;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-size: $base-font-size;
 }
 
 body {
     font-family: "Source Sans Pro";
     font-weight: 300;
+    background: $body-bg;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
+nav {
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,.5) 90%, rgba(0,0,0,.8)) repeat-y 100% 0 / 15px 100%, url(../images/overlay.png) $sidebar-bg;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    color: $sidebar-color;
+    text-align: right;
+}
 
+#profile {
+    font-size: .9rem;
+    display: block;
+    overflow: hidden;
+    padding: $sidebar-padding;
+
+    img {
+        float: left;
+    }
+
+    strong {
+        color: opacify($sidebar-color, 1);
+        font-size: 1.5rem;
+    }
+}
+
+#main-menu {
+    font-size: 1.1em;
+
+    li {
+        a {
+            display: flex;
+            padding: 0 $sidebar-padding;
+            line-height: #{60px / $base-font-size}rem;
+
+            &:before {
+            }
+        }
+    }
+
+}
+
+main {
+    margin-left: $sidebar-width;
+}

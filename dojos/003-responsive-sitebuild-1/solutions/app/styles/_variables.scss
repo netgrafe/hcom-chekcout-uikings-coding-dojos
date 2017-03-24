@@ -1,0 +1,9 @@
+$base-font-size:    16px;
+$sidebar-width:     #{300px / $base-font-size}rem;
+$sidebar-padding:   37px;
+
+$clr-white:         #fff;
+
+$body-bg:           $clr-white;
+$sidebar-bg:        #222629;
+$sidebar-color:     transparentize($clr-white, .5);
