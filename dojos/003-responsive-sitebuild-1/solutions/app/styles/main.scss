@@ -1,6 +1,7 @@
 // bower:scss
 // endbower
 
+@import "mixins";
 @import "variables";
 @import "icons";
 
@@ -42,7 +43,7 @@ a {
 }
 
 nav {
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,.5) 90%, rgba(0,0,0,.8)) repeat-y 100% 0 / 15px 100%, url(../images/overlay.png) $sidebar-bg;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,.5) 90%, rgba(0,0,0,.8)) repeat-y 100% 0 / #{remy(15px)} 100%, url(../images/overlay.png) $sidebar-bg;
     position: fixed;
     left: 0;
     top: 0;
@@ -75,13 +76,12 @@ nav {
         a {
             display: flex;
             padding: 0 $sidebar-padding;
-            line-height: #{60px / $base-font-size}rem;
+            line-height: remy(60px);
 
             &:before {
             }
         }
     }
-
 }
 
 main {
