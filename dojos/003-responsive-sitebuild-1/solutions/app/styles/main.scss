@@ -12,7 +12,7 @@
     padding: 0.2em 0;
 }
 
-ul, ol, li, p, h1, h2, h3, figure {
+ul, ol, li, p, h1, h2, h3, figure, html, body {
     margin: 0;
     padding: 0;
 }
@@ -35,32 +35,41 @@ body {
     font-family: "Source Sans Pro";
     font-weight: 300;
     background: $body-bg;
+
+    @supports (display: grid) {
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: $sidebar-width 1fr;
+    }
 }
 
 a {
     color: inherit;
     text-decoration: none;
+    outline: 0;
+
+    &:focus {
+        outline: 1px solid;
+    }
 }
 
 nav {
     background: linear-gradient(90deg, transparent, rgba(0,0,0,.5) 90%, rgba(0,0,0,.8)) repeat-y 100% 0 / #{remy(15px)} 100%, url(../images/overlay.png) $sidebar-bg;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: $sidebar-width;
     color: $sidebar-color;
-    text-align: right;
+    overflow: auto;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
 }
 
 #profile {
     font-size: .9rem;
-    display: block;
-    overflow: hidden;
-    padding: $sidebar-padding;
+    margin: $sidebar-padding;
+    text-align: right;
+    height: remy(48px);
 
     img {
         float: left;
+        height: 100%;
     }
 
     strong {
@@ -74,16 +83,85 @@ nav {
 
     li {
         a {
+            will-change: background;
             display: flex;
-            padding: 0 $sidebar-padding;
-            line-height: remy(60px);
+            justify-content: space-between;
+            align-items: center;
+            min-height: remy(60px);
+            padding: remy(10px) $sidebar-padding;
+            text-align: right;
+            transition: all .23s ease;
 
-            &:before {
+            &.active,
+            &:hover,
+            &:focus {
+                background: linear-gradient(transparentize($active-menu-bg, .1), transparent 10%, transparent 90%, transparentize($active-menu-bg, .1)), $active-menu-bg;
+                color: $clr-white;
+
+                &::before {
+                    color: $active-icon-color;
+                }
+            }
+
+            &::before {
+                font-size: remy(20px);
+                flex-shrink: 0;
+                margin-right: remy(10px);
+                transition: all .23s ease;
             }
         }
     }
 }
 
+#share {
+    display: flex;
+    justify-content: center;
+    padding-bottom: $sidebar-padding;
+
+    li {
+        a {
+            position: relative;
+
+            &::before {
+                font-size: remy(20px);
+                margin: 0 remy(10px);
+            }
+
+            &:hover {
+                span {
+                    left: 50%;
+                    opacity: 1;
+                    transform: translate(-50%, remy(-15px));
+                    transition: transform .23s linear, opacity .23s linear;
+                }
+            }
+        }
+    }
+
+    span {
+        opacity: 0;
+        position: absolute;
+        left: -800%;
+        bottom: 100%;
+        transform: translate(-50%, remy(0px));
+        background: #000;
+        padding: remy(5px) remy(10px);
+        border-radius: 2px;
+        color: #fff;
+        transition: left 0s linear .23s, transform .23s linear, opacity .23s linear;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            margin-left: remy(-5px);
+            border: remy(5px) solid transparent;
+            border-top-color: #000;
+        }
+    }
+}
+
 main {
-    margin-left: $sidebar-width;
+    overflow: auto;
 }
