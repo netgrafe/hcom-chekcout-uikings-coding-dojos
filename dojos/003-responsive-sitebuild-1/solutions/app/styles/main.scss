@@ -53,6 +53,25 @@ a {
     }
 }
 
+p {
+    font-size: remy(24px);
+}
+
+.offscreen {
+    position: absolute;
+    left: -999em;
+}
+
+.button {
+    border: 0;
+    border-radius: 5px;
+    color: $clr-white;
+    background: linear-gradient(transparent, rgba(0,0,0,.15)), url(../images/overlay.png) $clr-cyan;
+    padding: remy(20px) remy(50px);
+    font-size: remy(24px);
+    display: inline-block;
+}
+
 nav {
     background: linear-gradient(90deg, transparent, rgba(0,0,0,.5) 90%, rgba(0,0,0,.8)) repeat-y 100% 0 / #{remy(15px)} 100%, url(../images/overlay.png) $sidebar-bg;
     color: $sidebar-color;
@@ -164,4 +183,121 @@ nav {
 
 main {
     overflow: auto;
+    text-align: center;
 }
+
+#intro {
+    background: url(../images/banner.jpg) center center / cover $section1-bg;
+    padding: remy(150px) remy(50px);
+
+    strong {
+        color: $clr-white;
+        font-weight: 300;
+    }
+
+    p {
+        max-width: remy(530px);
+        margin: 0 auto;
+    }
+
+    .highlight {
+        font-size: remy(50px);
+        color: transparentize($clr-white, .25);
+        max-width: remy(750px);
+        margin-bottom: remy(40px);
+
+        a {
+            border-bottom: 1px dotted $clr-white;
+        }
+    }
+
+    .button {
+        margin-top: remy(60px);
+    }
+}
+
+section {
+    padding: 0 calc(50% - 700px) remy(80px);
+
+    &.invert {
+        color: $clr-white;
+    }
+
+    > h1 {
+        margin: 0 auto;
+        width: 10em;
+        transform: translateY(-50%);
+        font-size: remy(40px);
+        font-weight: 300;
+        background: inherit;
+        padding: .2em 0;
+        position: relative;
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            width: .3em;
+            height: 50.5%;
+            bottom: 0;
+        }
+
+        &:before {
+            right: 100%;
+            background: linear-gradient(80deg, transparent 60%, rgba(0,0,0,.5));
+        }
+
+        &:after {
+            left: 100%;
+            background: linear-gradient(-80deg, transparent 60%, rgba(0,0,0,.5));
+        }
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+    }
+}
+
+%greasy {
+    background: url(../images/overlay.png);
+}
+
+#portfolio {
+    @extend %greasy;
+    background-color: $section2-bg;
+
+    > div {
+        column-count: 3;
+        column-gap: remy(40px);
+
+        figure {
+            break-inside: avoid-column;
+            margin-bottom: remy(40px);
+            padding-bottom: 8px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        figcaption {
+            font-size: remy(20px);
+            color: $figcaption;
+            padding: remy(16px);
+            background: $clr-white;
+            box-shadow: 0 3px 5px rgba(0,0,0,.1);
+            }
+    }
+}
+
+#about {
+    @extend %greasy;
+    background-color: $section3-bg;
+}
+
+#contact {
+    @extend %greasy;
+    background-color: $section4-bg;
+}
+
