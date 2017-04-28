@@ -23,7 +23,12 @@ li {
 
 * {
     font-family: inherit;
+    font-size: inherit;
     box-sizing: border-box;
+}
+
+::placeholder {
+    color: transparent;
 }
 
 html, body {
@@ -69,7 +74,9 @@ p {
     background: linear-gradient(transparent, rgba(0,0,0,.15)), url(../images/overlay.png) $clr-cyan;
     padding: remy(20px) remy(50px);
     font-size: remy(24px);
+    font-weight: 200;
     display: inline-block;
+    cursor: pointer;
 }
 
 nav {
@@ -257,6 +264,11 @@ section {
         max-width: 100%;
         display: block;
     }
+
+    figure,
+    p {
+        margin-bottom: 2rem;
+    }
 }
 
 %greasy {
@@ -272,7 +284,7 @@ section {
         column-gap: remy(40px);
 
         figure {
-            break-inside: avoid-column;
+            break-inside: avoid;
             margin-bottom: remy(40px);
             padding-bottom: 8px;
 
@@ -301,3 +313,122 @@ section {
     background-color: $section4-bg;
 }
 
+form {
+    text-align: left;
+    display: grid;
+    grid-template-areas: "name email"
+                         "message message"
+                         "buttons buttons";
+    grid-gap: remy(20px);
+
+    label {
+        @extend .offscreen;
+    }
+
+    br {
+        display: none;
+    }
+
+    .button {
+        grid-area: buttons;
+        justify-self: center;
+    }
+}
+
+.field {
+    width: 100%;
+    font-size: 1.5rem;
+    border: 1px solid #c5c6c6;
+    border-radius: remy(6px);
+    padding: remy(20px) remy(25px);
+    background: $input-bg;
+    transition: all .23s ease;
+    outline: 0;
+    box-shadow: inset 0 2px 2px rgba(0,0,0,.1);
+
+    &:focus {
+        background: $clr-white;
+        border-color: $clr-cyan;
+    }
+
+
+    &:placeholder-shown {
+        + label {
+            font-size: 1.5rem;
+            transform: translateY(0);
+            color: $clr-grey;
+            &[for=message] {
+                transform: translateY(remy(20px));
+            }
+        }
+    }
+
+    + label {
+        position: relative;
+        left: auto;
+        align-self: center;
+        font-size: 1rem;
+        transition: all .23s ease;
+        padding: 0 remy(25px);
+        transform: translateY(-1.4rem);
+        color: $clr-cyan;
+        user-select: none;
+
+        &[for=message] {
+            align-self: start;
+            transform: translateY(remy(5px));
+        }
+    }
+
+}
+
+label[for=name],
+#name {
+    grid-area: name;
+}
+
+label[for=email],
+#email {
+    grid-area: email;
+}
+
+label[for=message],
+#message {
+    grid-area: message;
+}
+
+#message {
+    min-height: remy(200px);
+    max-height: remy(400px);
+    resize: vertical;
+}
+
+footer {
+    background: linear-gradient($footer-shadow, transparentize($footer-shadow, .7) 2px, transparent remy(10px)), $footer-bg;
+    padding: remy(80px) remy(20px);
+    font-size: remy(20px);
+    color: $clr-grey;
+
+    a {
+        border-bottom: 1px dotted;
+    }
+}
+
+
+@media screen and (max-width: 1880px) {
+    section {
+        padding: 0 calc(50% - 600px) remy(80px);
+    }
+}
+
+@media screen and (max-width: 1620px) {
+    section {
+        padding: 0 calc(50% - 480px) remy(80px);
+    }
+}
+
+@media screen and (max-width: 1320px) {
+    section {
+        padding: 0 remy(20px) remy(80px);
+    }
+}
