@@ -31,12 +31,13 @@ li {
     color: transparent;
 }
 
-html, body {
+html {
     height: 100%;
     font-size: $base-font-size;
 }
 
 body {
+    height: 100%;
     font-family: "Source Sans Pro";
     font-weight: 300;
     background: $body-bg;
@@ -77,6 +78,22 @@ p {
     font-weight: 200;
     display: inline-block;
     cursor: pointer;
+}
+
+label[for=toggle] {
+    user-select: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    padding: .2em .4em 0;
+    color: $clr-white;
+    background: rgba(255, 255, 255, .4);
+    mix-blend-mode: difference;
+    border-radius: 5px;
+    font-size: 3em;
+    line-height: .1em;
+    transform: translateX(-$sidebar-width);
 }
 
 nav {
@@ -232,7 +249,7 @@ section {
 
     > h1 {
         margin: 0 auto;
-        width: 10em;
+        max-width: 10em;
         transform: translateY(-50%);
         font-size: remy(40px);
         font-weight: 300;
@@ -414,7 +431,6 @@ footer {
     }
 }
 
-
 @media screen and (max-width: 1880px) {
     section {
         padding: 0 calc(50% - 600px) remy(80px);
@@ -422,13 +438,141 @@ footer {
 }
 
 @media screen and (max-width: 1620px) {
+    html {
+        font-size: $base-font-size * .9;
+    }
+
+    #profile {
+        height: auto;
+
+        img {
+            display: block;
+            float: none;
+            margin: 0 0 1em auto;
+            height: auto;
+        }
+    }
+
+    #main-menu {
+        li {
+            a {
+                flex-direction: row-reverse;
+                justify-content: flex-start;
+
+                &:before {
+                    margin-right: 0;
+                    margin-left: 0.625rem;
+                }
+            }
+        }
+    }
+
     section {
         padding: 0 calc(50% - 480px) remy(80px);
     }
+
+    #portfolio {
+        > div {
+            column-gap: 1.5rem;
+        }
+    }
+
 }
 
 @media screen and (max-width: 1320px) {
-    section {
-        padding: 0 remy(20px) remy(80px);
+    body {
+        display: block;
     }
+
+    label[for=toggle] {
+        transform: translateX(0);
+        transition: transform .23s ease;
+    }
+
+    nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: $sidebar-width;
+        transform: translateX(-$sidebar-width);
+        transition: transform .23s ease;
+    }
+
+    main {
+        height: 100%;
+        transition: transform .23s ease;
+    }
+
+    section {
+        padding: 0 remy(40px) remy(80px);
+    }
+
+    #intro {
+        p,
+        .highlight {
+            max-width: none;
+        }
+    }
+
+    footer {
+        background: linear-gradient($clr-white, $footer-shadow 1px, transparentize($footer-shadow, .7) 2px, transparent remy(10px)), $footer-bg;
+    }
+
+    #toggle:checked {
+        + label {
+            transform: translateX($sidebar-width);
+        }
+
+        ~ nav {
+            transform: translateX(0);
+        }
+
+        ~ main {
+            transform: translateX($sidebar-width);
+
+            section, footer {
+                position: relative;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    z-index: 1;
+                    background: rgba(0,0,0,.4);
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 736px) {
+    html {
+        font-size: $base-font-size * .75;
+    }
+
+    #intro {
+        .highlight {
+            font-size: 2.4rem;
+        }
+    }
+
+    #portfolio {
+        > div {
+            column-count: 1;
+
+            figure {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    form {
+        grid-template-areas: "name" "email" "message" "buttons";
+    }
+
 }
