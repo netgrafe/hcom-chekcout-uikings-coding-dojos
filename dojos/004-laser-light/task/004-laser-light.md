@@ -49,7 +49,7 @@ The mirrors `/` and ` \ ` (forward- and backslash) will rotate the rays by 90 de
 #
 ```
 
-Blockades are impervious to lasers and block its way; their character is `#` . 
+Blockades are impervious to lasers and block its way; their character is `#` .
 
 ### Targets
 
@@ -65,15 +65,15 @@ Targets are signed by `@`, we should shoot them all. Additionally, the targets a
 0, 1, ... 9
 ```
 
-And here is where the fun starts: we have portals! They are numbered from `0` to `9` and they come in pairs: 
+And here is where the fun starts: we have portals! They are numbered from `0` to `9` and they come in pairs:
 
 - lasers go into one of them, and come out of the other one
 - portals do not change the direction of the lasers
 ```
       v
-         
+
 > 9 # 9 @
-         
+
   #
 ```
 > left tower hits the target, top target hits the bottom blockade.
@@ -87,7 +87,7 @@ The scene will be
 - provided as a multi-line string, lines separated by `\n`
 - will be rectangular (space padded)
 ```
-scene = 
+scene =
   "      v  \n" +
   "> 9 # 9 @\n" +
   "  #      ";
@@ -99,11 +99,11 @@ scene =
 
 Input
 ```
-      v  
-         
+      v
+
 > 9 # 9 @
-         
-  #      
+
+  #
 ```
 
 Output:
@@ -115,7 +115,7 @@ Output:
 
 Input
 ```
-     v 
+     v
 > 9#9 @
 ```
 
@@ -129,14 +129,14 @@ Output:
 
 Input
 ```
- vvvv 
+ vvvv
  \\\\\
  /////
- 1234 
- 4321 
-///// 
-\\\\\ 
- @@@@ 
+ 1234
+ 4321
+/////
+\\\\\
+ @@@@
 ```
 
 Output:
