@@ -38,10 +38,26 @@ function mirrorRightTranslator(coords, direction) {
 }
 
 function spaceTranslator(coords, direction) {
-
+    return {
+        coords: vectorAdd(coords, direction),
+        direction
+    };
 }
 
-function portalTranslator(coords, direction) {
+function portalTranslator(portalType, coords, direction, portals) {
+    // portals.filter( portal => { return portalType === portal.type; });
+
+/*
+    {
+        PORTAL_1: [ { x: 0, y: 0}, { x: 3, y: 3} ]
+    }
+
+    Object.keys(portals)
+        .map((portalKey) => portals[portalKey])
+        .find((pair) => {
+            pair.some((actualCoord) => actualCoord.x === coords.x && )
+        })
+*/
 
 }
 

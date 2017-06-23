@@ -47,7 +47,7 @@ charMapper[constants.SPACE] = () => {
     return {
         type: constants.SPACE,
         traversed: false,
-        translate: () => {}
+        translate: translators.spaceTranslator
     }
 }
 
@@ -69,19 +69,29 @@ charMapper[constants.BLOCK] = () => {
 charMapper[constants.MIRROR_LEFT] = () => {
     return {
         type: constants.MIRROR_LEFT,
-        translate: () => {}
+        translate: translators.mirrorLeftTranslator
     }
 }
 
 charMapper[constants.MIRROR_RIGHT] = () => {
     return {
         type: constants.MIRROR_RIGHT,
-        translate: () => {}
+        translate: translators.mirrorRightTranslator
     }
 }
 
 function process(input) {
-    return charMapper[input]();
+    if (Number.isInteger(parseInt(input))) {
+        const portalType = constants['PORTAL_' + input];
+
+        return {
+            type: portalType,
+            translate: translators.portalTranslator.bind(null, portalType)
+        }
+    } else {
+        return charMapper[input]();
+    }
+
 }
 
 module.exports = process;

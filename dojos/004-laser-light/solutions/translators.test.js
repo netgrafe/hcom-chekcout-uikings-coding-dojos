@@ -140,11 +140,62 @@ const spaceTranslatorTestCases = [
             coords: { x: 6, y: 5 }
         }
     }
-]
+];
 
-function testTranslators (testDirectedMirror, { input, output, name }) {
+const portalTranslatorTestCases = [
+    {
+        name: 'not change direction just move coords to target and one step down',
+        input: {
+            direction: DOWN,
+            coords: { x: 5, y: 5 },
+            target: { x: 2, y: 2 }
+        },
+        output: {
+            direction: DOWN,
+            coords: { x: 2, y: 3 }
+        }
+    },
+    {
+        name: 'not change direction just move coords to target and one step up',
+        input: {
+            direction: UP,
+            coords: { x: 5, y: 5 },
+            target: { x: 2, y: 2 }
+        },
+        output: {
+            direction: UP,
+            coords: { x: 2, y: 1 }
+        }
+    },
+    {
+        name: 'not change direction just move coords to target and one step left',
+        input: {
+            direction: LEFT,
+            coords: { x: 5, y: 5 },
+            portals: []
+        },
+        output: {
+            direction: LEFT,
+            coords: { x: 1, y: 2 }
+        }
+    },
+    {
+        name: 'not change direction just move coords to target and one step right',
+        input: {
+            direction: RIGHT,
+            coords: { x: 5, y: 5 },
+            portals: []
+        },
+        output: {
+            direction: RIGHT,
+            coords: { x: 3, y: 2 }
+        }
+    }
+];
+
+function testTranslators (testedTranslator, { input, output, name }) {
     it(`should  ${name}`, () => {
-        const { coords, direction } = testDirectedMirror(input.coords, input.direction);
+        const { coords, direction } = testedTranslator(input.coords, input.direction, input.target);
 
         expect(direction).toBe(output.direction);
         expect(coords).toEqual(output.coords);
@@ -161,4 +212,8 @@ describe('Mirror right translator', () => {
 
 describe('Space translator', () => {
     spaceTranslatorTestCases.forEach((testCase) => testTranslators(translators.spaceTranslator, testCase));
+});
+
+describe('Portal translator', () => {
+    portalTranslatorTestCases.forEach((testCase) => testTranslators(translators.portalTranslator, testCase));
 });
