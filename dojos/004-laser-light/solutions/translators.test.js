@@ -213,7 +213,8 @@ describe('Mirror right translator', () => {
 describe('Space translator', () => {
     spaceTranslatorTestCases.forEach((testCase) => testTranslators(translators.spaceTranslator, testCase));
 });
-
+/*
 describe('Portal translator', () => {
     portalTranslatorTestCases.forEach((testCase) => testTranslators(translators.portalTranslator, testCase));
 });
+*/

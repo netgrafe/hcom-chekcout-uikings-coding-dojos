@@ -80,18 +80,32 @@ charMapper[constants.MIRROR_RIGHT] = () => {
     }
 }
 
-function process(input) {
-    if (Number.isInteger(parseInt(input))) {
-        const portalType = constants['PORTAL_' + input];
+function processCharacter({character, rawTable, dimension}) {
+    if (Number.isInteger(parseInt(character))) {
+        const portalType = constants['PORTAL_' + character];
 
         return {
             type: portalType,
             translate: translators.portalTranslator.bind(null, portalType)
         }
     } else {
-        return charMapper[input]();
+        return charMapper[character]();
     }
 
 }
 
-module.exports = process;
+function getTableDimensions(rawTable) {
+    const rows = rawTable.split('\n');
+    const height = rows.length;
+    const width = rows[0].length;
+
+    return {
+        width,
+        height
+    }
+}
+
+module.exports = {
+    processCharacter,
+    getTableDimensions
+};
