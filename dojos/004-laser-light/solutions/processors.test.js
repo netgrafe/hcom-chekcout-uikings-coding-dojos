@@ -94,19 +94,7 @@ const characterProcessorTestCases = [{
             type: constants.TARGET,
             hit: false
         }
-     }
-    /*,
-    {
-        input: {
-            character: {
-            },
-            character: constants.PORTAL_8,
-        },
-        output: {
-            type: constants.PORTAL_8,
-            translate: translators.portalTranslator
-        }
-    }*/
+    }
 ];
 
 const tableDimensionsTestCases = [
@@ -134,12 +122,22 @@ describe('Process', function () {
     );
 
     it('PortalTranslator', () => {
-        spyOn(translators.portalTranslator, 'bind');
+        const testInput = {
+            character: constants.PORTAL_8,
+            rawTable: '>   \\  @ \n>   \\  @ \n>   \\  @ \n>   \\  @ ',
+            dimension: { width: 9, height: 4 }
+        };
+        const expectedResult = {
+            type: constants.PORTAL_8,
+            translate: () => {}
+        }
 
+        jest.spyOn(translators.portalTranslator, 'bind').mockReturnValue(expectedResult.translate);
         const result = processors.processCharacter({character: constants.PORTAL_8});
 
         expect(translators.portalTranslator.bind).toHaveBeenCalledWith(null, constants.PORTAL_8);
         expect(result.type).toBe(constants.PORTAL_8);
+        expect(result.translate).toBe(expectedResult.translate);
     });
 });
 
