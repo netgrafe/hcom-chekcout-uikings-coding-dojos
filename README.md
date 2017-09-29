@@ -11,3 +11,7 @@ Coding Dojo repository for HCOM Checkout UIEs.
 [003 - Responsive sitebuild](dojos/003-responsive-sitebuild-1/task/README.md)
 
 [004 - Laser light](dojos/004-laser-light/task/004-laser-light.md)
+
+[005 - Roman numbers](dojos/005-roman-numbers/task/005-roman-numbers.md)
+
+[006 - Comics Discount](dojos/006-comics-discount/task/006-comics-discount.md)
