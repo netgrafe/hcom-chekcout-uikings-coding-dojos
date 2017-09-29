@@ -84,7 +84,7 @@ describe('Comics Price calculator', () => {
         expect(comicsPriceCalculator).toBeDefined();
     });
 
-    [testCases[8]].forEach(({ input, output }) => {
+    testCases.forEach(({ input, output }) => {
         it(`should calculate total for ${input}`, () => {
             expect(comicsPriceCalculator(input)).toBe(output);
         });

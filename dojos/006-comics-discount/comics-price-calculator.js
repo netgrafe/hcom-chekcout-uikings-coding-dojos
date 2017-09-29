@@ -1,36 +1,40 @@
 module.exports = (shoppingCart) => {
     // code
-    let subTotals = [8, 15.2, 21.6, 25.6, 30];
+    let subTotals = [8, 15.2, 21.6, 25.6, 30],
+        grouppedCart = [],
+        totalPrice = 0;
 
-    return shoppingCart.reduce(({ groups, total: prevTotal }, element) => {
-        /*
-        [
-            Set(0, 1, 2),
-            Set(0, 2, 4)
-        ] */
-        let bestGroup = null;
-        let total;
-        const bestTotal = groups.reduce((minTotal, group) => {
-            if (group.has(element)) return;
-            const currentTotal = total - subTotals[group.size - 1] + subTotals[group.size];
-            if (currentTotal < minTotal) {
-                minTotal = currentTotal;
-                bestGroup = group;
-                console.log(bestGroup);
+    shoppingCart.forEach(bookNumber => {
+        const bestGroup = {
+            setIndex: null,
+            minTotal: Infinity
+        };
+
+        grouppedCart.forEach((set, index) => {
+            if (!set.has(bookNumber)) {
+                const valueOfCurrentSet = subTotals[set.size-1];
+                const valueOfSetWithActualBook = subTotals[set.size];
+                const increasedGroupCartValue = totalPrice - valueOfCurrentSet + valueOfSetWithActualBook;
+
+                if (increasedGroupCartValue < bestGroup.minTotal) {
+                    bestGroup.setIndex = index;
+                    bestGroup.minTotal = increasedGroupCartValue;
+                }
             }
-        }, prevTotal + subTotals[0]);
-        console.log(bestGroup);
-        if (bestGroup) {
-            bestGroup.add(element);
-            total = bestTotal;
+        });
 
+        if (bestGroup.setIndex === null) {
+            grouppedCart.push(new Set([bookNumber]));
+            totalPrice += subTotals[0];
         } else {
-            groups.push(new Set([element]));
-            total = prevTotal + subTotals[0];
+            const setToExpand = grouppedCart[bestGroup.setIndex];
+            setToExpand.add(bookNumber);
+
+            totalPrice = parseFloat(bestGroup.minTotal.toFixed(2));
         }
-        return {
-            total,
-            groups
-        }
-    }, { groups: [], total: 0 }).total;
+    });
+
+    return totalPrice;
 }
+
+
