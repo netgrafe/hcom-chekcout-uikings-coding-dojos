@@ -1,30 +1,36 @@
 <template>
     <div class="board">
-        <TableGrid v-for="i in 9" :key="i" />
+        <table-grid v-for="section in sections" :key="section"  :section="section" />
     </div>
 </template>
 
 <script>
-import TableGrid from "@/components/TableGrid";
-export default {
-  name: "SudokuTable",
-  data() {
-    return {
-      i: null
+    import TableGrid from "@/components/TableGrid";
+
+    export default {
+        name: "SudokuTable",
+        computed: {
+            sections() {
+                const sections = [];
+
+                for (let i = 0; i < 9; i++) {
+                    sections[i] = this.$store.getters.getSection(i);
+                }
+                return sections;
+            }
+        },
+        components: {
+            TableGrid
+        }
     };
-  },
-  components: {
-    TableGrid
-  }
-};
 </script>
 
 <style scoped>
-.board {
-    width: 90vw;
-    height: 90vw;
-    border: 2px solid black;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
+    .board {
+        width: 90vw;
+        height: 90vw;
+        border: 2px solid black;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
 </style>

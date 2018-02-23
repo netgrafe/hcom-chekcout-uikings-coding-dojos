@@ -1,12 +1,15 @@
 <template>
     <div class="block">
-        <div v-for="i in 9" :key="i" class="cell">{{i}}</div>
+        <div v-for="cell in section" :key="cell.x + cell.y" class="cell">{{cell.value}}</div>
     </div>
 </template>
 
 <script>
 export default {
     name: "TableGrid",
+    props: {
+        section: Array
+    },
     data () {
         return {
             i: null
@@ -27,7 +30,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: limegreen;
+    background-color: transparent;
     border-style: solid;
     border-color: #ddd;
     border-width: 0;
