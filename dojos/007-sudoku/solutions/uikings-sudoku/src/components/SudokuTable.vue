@@ -1,11 +1,11 @@
 <template>
     <div class="board">
-        <table-grid v-for="section in sections" :key="section"  :section="section" />
+        <table-section v-for="(section, index) in sections" :key="index"  :section="section" />
     </div>
 </template>
 
 <script>
-    import TableGrid from "@/components/TableGrid";
+    import TableSection from "@/components/TableSection";
 
     export default {
         name: "SudokuTable",
@@ -20,7 +20,7 @@
             }
         },
         components: {
-            TableGrid
+            TableSection
         }
     };
 </script>
