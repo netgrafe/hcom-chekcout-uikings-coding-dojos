@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>options</p>
+    <p></p>
   </div>
 </template>
 

@@ -113,7 +113,7 @@ export default new Vuex.Store({
             ];
 
             for (let i = 1; i <= 9; i++) {
-                let filteredElements = state.board.filter(element => i === parseInt(element));
+                let filteredElements = state.board.filter(element => i === parseInt(element.value));
                 valueSelectors.push({
                     value: i,
                     numberOfOccurences: filteredElements.length
@@ -121,6 +121,9 @@ export default new Vuex.Store({
             }
 
             return valueSelectors;
+        },
+        gameEnded(state, getters) {
+            return state.board && getters.valueSelectors.slice(1).every(selector => selector.numberOfOccurences === 9)
         }
     },
     actions: {
@@ -136,14 +139,22 @@ export default new Vuex.Store({
             });
 
         },
-        registerSelectedNumber({state, getters}, selector){
-            if (state.selectedCell !== null && !state.selectedCell.isReadOnly){
-                console.log('registerSelectedNumber');
-                let col = getters.getColumn(state.selectedCell.x);
-                let row = getters.getRow(state.selectedCell.y);
+        registerSelectedNumber({state, getters, commit}, selector){
+            if (state.selectedCell !== null && !state.selectedCell.isReadOnly && state.selectedCell.value !== String(selector.value)){
+                let col = getters.getColumn(state.selectedCell.y);
+                let row = getters.getRow(state.selectedCell.x);
                 let section = getters.getSection(getters.getSectionOf(state.selectedCell));
-                //ezeken vegigmenni, es megnezni hogy szerepel-e bennuk a selector erteke
-                console.log(col, row, section);
+                let contains = cell => parseInt(cell.value) === parseInt(selector.value);
+
+                if (col.some(contains) || row.some(contains) || section.some(contains)) {
+                    state.selectedCell.value = '';
+                    commit('selectCell', state.selectedCell);
+                    state.selectedCell.appearance = 'invalid';
+                } else {
+                    state.selectedCell.appearance = '';
+                    state.selectedCell.value = String(selector.value);
+                    commit('selectCell', state.selectedCell);
+                }
             }
         }
     }

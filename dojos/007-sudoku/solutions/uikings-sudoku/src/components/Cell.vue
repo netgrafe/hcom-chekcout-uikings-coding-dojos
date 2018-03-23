@@ -26,10 +26,14 @@
         border-color: #ddd;
         border-width: 0;
         font-size: 1.2rem;
+        cursor: text;
+        user-select: none;
     }
 
     .read-only {
         font-weight: bold;
+        cursor: pointer;
+
     }
 
     .cell:nth-child(3n+1), .cell:nth-child(3n+2) {
@@ -52,6 +56,17 @@
 
     .highlighted {
         background-color: #E0EFED;
+    }
+
+    .invalid {
+        background-color: #FFF228;
+        position: relative;
+        &:after {
+            position: absolute;
+            content: '!';
+            font-weight: bold;
+            font-size: 2.2rem;
+        }
     }
 </style>
 

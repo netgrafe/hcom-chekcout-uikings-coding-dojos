@@ -3,6 +3,7 @@
     <h1>UIKINGS SUDOKU</h1>
     <SudokuTable v-if="boardLoaded"/>
     <GameOptions />
+    <finish-screen v-if="gameEnded"/>
   </div>
 </template>
 
@@ -10,19 +11,23 @@
 import SudokuTable from "./components/SudokuTable";
 import ValueSelector from "./components/ValueSelector";
 import GameOptions from "./components/GameOptions";
+import FinishScreen from "./components/FinishScreen";
 import store from "@/store/store";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "app",
   components: {
     SudokuTable,
-    GameOptions
+    GameOptions,
+    FinishScreen
   },
   store,
   computed: {
     boardLoaded() {
       return this.$store.state.board;
     },
+    ...mapGetters(['gameEnded'])
   },
   created() {
     this.$store.dispatch("loadChallenges");
