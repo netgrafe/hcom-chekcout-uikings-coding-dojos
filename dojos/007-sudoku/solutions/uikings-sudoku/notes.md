@@ -50,6 +50,7 @@
 
 ## Szám gombra rányomás
 
+- van-e aktív cella
 - írható cella egyáltalán?
 - ha nem valid
     - a selectedCell és a pushedButton sárgítása

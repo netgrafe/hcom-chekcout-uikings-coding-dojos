@@ -1,11 +1,12 @@
 <template>
     <section>
-        <Cell v-for="(cell, index) in section" :key="index" :cell="cell" />
+        <Cell v-for="(cell, index) in section" :key="index" :cell="cell" @click.native="selectCell(cell)"/>
     </section>
 </template>
 
 <script>
     import Cell from '@/components/Cell';
+    import { mapMutations } from 'vuex';
 
     export default {
         name: "TableSection",
@@ -14,6 +15,11 @@
         },
         props: {
             section: Array
+        },
+        methods: {
+            ...mapMutations([
+                'selectCell'
+            ])
         }
     }
 </script>

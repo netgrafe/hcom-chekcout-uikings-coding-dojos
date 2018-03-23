@@ -1,11 +1,16 @@
 <template>
-    <div class="cell">{{cell.value}}</div>
+    <div class="cell" :class="stateClass">{{cell.value}}</div>
 </template>
 
 <script>
     export default {
         props: {
             cell: Object
+        },
+        computed: {
+            stateClass() {
+                return this.cell.appearance + (this.cell.isReadOnly ? ' read-only' : '');
+            }
         }
     }
 </script>
@@ -20,6 +25,11 @@
         border-style: solid;
         border-color: #ddd;
         border-width: 0;
+        font-size: 1.2rem;
+    }
+
+    .read-only {
+        font-weight: bold;
     }
 
     .cell:nth-child(3n+1), .cell:nth-child(3n+2) {
@@ -28,6 +38,20 @@
 
     .cell:nth-child(n+4) {
         border-top-width: 2px;
+    }
+
+    .grouped {
+        background-color: #9E3336;
+        color: #FFF;
+        font-weight: bold;
+    }
+
+    .focused {
+        background-color: #D3E9E9;
+    }
+
+    .highlighted {
+        background-color: #E0EFED;
     }
 </style>
 

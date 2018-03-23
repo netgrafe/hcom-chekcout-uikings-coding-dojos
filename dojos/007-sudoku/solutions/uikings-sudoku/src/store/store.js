@@ -11,7 +11,7 @@ isReadOnly
 isSelected (mégsem kell, úgy döntöttünk, inkább a tábla adata ez)
 x
 y
-appearence (lehetséges értékek)
+appearance (lehetséges értékek)
 inactive
 error (törlés gombbal lehet kikerülni belőle)
 focused - sötétebb kék
@@ -25,8 +25,7 @@ export default new Vuex.Store({
         challenges: null,
         board: null,
         selectedCell: null,
-        pushedButton: null,
-        numberRegistry: []  // how many occurences are written from each number
+        pushedButton: null
     },
     mutations: {
         saveChallenges(state, challenges) {
@@ -40,7 +39,7 @@ export default new Vuex.Store({
             state.board = allFields.map((item, index) => {
                 const isItemEmpty = item === '.' ? true : false;
                 return {
-                    value: isItemEmpty ? '' :  item,
+                    value: isItemEmpty ? '' : item,
                     isReadOnly: !isItemEmpty,
                     x: Math.floor(index / 9),
                     y: index % 9,
@@ -48,42 +47,87 @@ export default new Vuex.Store({
                 }
             });
 
-            for (let i = 1; i <=9; i++) {
-                let filteredElements = allFields.filter(element => i === parseInt(element));
-                state.numberRegistry[i] = filteredElements.length;
+        },
+        selectCell(state, cell) {
+            state.selectedCell = cell;
+
+            state.board.forEach(element => {
+                element.appearance = 'inactive';
+            });
+
+            state.board.filter(el => ((el.x === cell.x || el.y === cell.y) && el !== cell)).forEach(el => {
+                el.appearance = 'highlighted';
+            });
+
+            if (cell.value) {
+                cell.appearance = 'grouped';
+
+                state.board.filter(el => el.value === cell.value).forEach(el => {
+                    el.appearance = 'grouped';
+                });
+            } else {
+                cell.appearance = 'focused';
             }
         }
     },
     getters: {
-        getRow() {
-            return function(index) {
-
+        getRow(state) {
+            return function (rowNumber) {
+                return state.board.filter(cell => {
+                    return cell.x == rowNumber;
+                });
             }
         },
         getSection(state) {
-            return function(index) {
+            return function (index) {
                 const topLeftX = Math.floor(index / 3) * 3;
                 const topLeftY = (index - topLeftX) * 3;
 
                 return state.board.filter(cell => {
                     return cell.x >= topLeftX && cell.x <= topLeftX + 2 &&
-                            cell.y >= topLeftY && cell.y <= topLeftY + 2;
-
+                        cell.y >= topLeftY && cell.y <= topLeftY + 2;
                 })
-
-            /*    index % 3  0
-                1 -> 1
-                2 -> 4
-                3 -> 7
-                4 -> 28
-                5 -> 31
-                6 -> 34 */
             }
         },
-        getColumn() {}
+        getSectionOf(state) {
+            return function(cell) {
+                let y = Math.floor(cell.y / 3)
+                let x = Math.floor(cell.x / 3);
+                return x * 3 + y;
+            }
+        },
+        getColumn(state) {
+            return function (colNumber) {
+                return state.board.filter(cell => {
+                    return cell.y == colNumber;
+                });
+            }
+        },
+
+        valueSelectors(state) {
+            let valueSelectors = [
+                {
+                    value: '',
+                    numberOfOccurences: null
+                }
+            ];
+
+            for (let i = 1; i <= 9; i++) {
+                let filteredElements = state.board.filter(element => i === parseInt(element));
+                valueSelectors.push({
+                    value: i,
+                    numberOfOccurences: filteredElements.length
+                });
+            }
+
+            return valueSelectors;
+        }
     },
     actions: {
-        loadChallenges({ commit, state }) {
+        loadChallenges({
+            commit,
+            state
+        }) {
             axios.get('/static/challenges.json').then(res => {
                 commit('saveChallenges', res.data);
                 console.log(res.data);
@@ -91,6 +135,16 @@ export default new Vuex.Store({
                 commit('startChallenge', state.challenges[0]);
             });
 
+        },
+        registerSelectedNumber({state, getters}, selector){
+            if (state.selectedCell !== null && !state.selectedCell.isReadOnly){
+                console.log('registerSelectedNumber');
+                let col = getters.getColumn(state.selectedCell.x);
+                let row = getters.getRow(state.selectedCell.y);
+                let section = getters.getSection(getters.getSectionOf(state.selectedCell));
+                //ezeken vegigmenni, es megnezni hogy szerepel-e bennuk a selector erteke
+                console.log(col, row, section);
+            }
         }
     }
 });
